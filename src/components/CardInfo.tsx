@@ -11,12 +11,13 @@ type CardInfoPropsType = {
   card_number: string
   first_name: string
   last_name: string
+  membership_tier?:string
 }
 
-const CardInfo = ({card_number,first_name,last_name}:CardInfoPropsType) => {
+const CardInfo = ({card_number,first_name,last_name,membership_tier}:CardInfoPropsType) => {
   const navigate = useNavigate()
   return (
-    <Card sx={{ color: (theme) => theme.palette.secondary.main }} elevation={3}>
+    <Card sx={{ color: (theme) => theme.palette.secondary.main , maxWidth:'600px'}} elevation={3}>
       <CardContent>
         <Typography variant="h4">{card_number}</Typography>
         <Grid container spacing={2}>
@@ -28,9 +29,13 @@ const CardInfo = ({card_number,first_name,last_name}:CardInfoPropsType) => {
           </Grid>
         </Grid>
         <CardActions sx={{ marginTop: (theme) => theme.spacing(2) }}>
-          <Button size="small" color="secondary" variant="contained" onClick={() => navigate('/cards/card1')}>
-            Learn More
-          </Button>
+          {membership_tier ? 
+            <Typography variant="h4">{membership_tier}</Typography>
+            :
+            <Button size="small" color="secondary" variant="contained" onClick={() => navigate('/cards/card1')}>
+              Learn More
+            </Button>
+          }
         </CardActions>
       </CardContent>
     </Card>
