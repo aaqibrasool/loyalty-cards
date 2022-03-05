@@ -7,6 +7,7 @@ import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import MenuItem from "@mui/material/MenuItem";
 import Button from "@mui/material/Button";
+import { allCardsUrl } from "../constants/externalEndPoints";
 
 const CreateCard = () => {
   const [cardNumber,setCardNumber] = useState('')
@@ -22,7 +23,7 @@ const CreateCard = () => {
       return
     }
     try {
-      axios.post('https://mocki.io/v1/6dcbbb3d-3487-4955-a0e7-33170e76c772',{
+      axios.post(allCardsUrl,{
         card_number:cardNumber,
         first_name:firstName,
         last_name:lastName,

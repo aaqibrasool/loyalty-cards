@@ -6,8 +6,7 @@ import Grid from "@mui/material/Grid";
 import Container from "@mui/material/Container";
 import Typography from "@mui/material/Typography";
 import CardInfo from "../components/CardInfo";
-
-const allCardUrl = "https://mocki.io/v1/6dcbbb3d-3487-4955-a0e7-33170e76c772";
+import { allCardsUrl } from "../constants/externalEndPoints";
 
 type CardsType = {
   card_number: string;
@@ -23,7 +22,7 @@ const fetchAllCards = (url: string) =>
   axios.get(url).then((res) => res.data as CardsType);
 
 const AllCards = () => {
-  const { data, error } = useSWR(allCardUrl, fetchAllCards);
+  const { data, error } = useSWR(allCardsUrl, fetchAllCards);
 
   if (error) {
     return (
