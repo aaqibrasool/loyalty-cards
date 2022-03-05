@@ -7,19 +7,10 @@ import Container from "@mui/material/Container";
 import Typography from "@mui/material/Typography";
 import CardInfo from "../components/CardInfo";
 import { allCardsUrl } from "../constants/externalEndPoints";
-
-type CardsType = {
-  card_number: string;
-  first_name: string;
-  last_name: string;
-  user_description?: string;
-  membership_tier: MembershipTierType;
-}[];
-
-type MembershipTierType = "bronze" | "silver" | "gold";
+import { CardType } from "../types/Card";
 
 const fetchAllCards = (url: string) =>
-  axios.get(url).then((res) => res.data as CardsType);
+  axios.get(url).then((res) => res.data as CardType[]);
 
 const AllCards = () => {
   const { data, error } = useSWR(allCardsUrl, fetchAllCards);
